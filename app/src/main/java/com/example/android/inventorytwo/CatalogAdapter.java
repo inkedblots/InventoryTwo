@@ -1,6 +1,7 @@
 package com.example.android.inventorytwo;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,11 +23,11 @@ public abstract class CatalogAdapter extends RecyclerView.Adapter<CatalogAdapter
     }
 
     //Creates the view that is inflated via the Recycler
+    @NonNull
     @Override
     public ListHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = layoutInflater.inflate(R.layout.list_item, parent, false);
         return new ListHolder(view);
-
     }
 
     //Binds your Array data to the particular layout views
@@ -34,15 +35,13 @@ public abstract class CatalogAdapter extends RecyclerView.Adapter<CatalogAdapter
     public void onBindViewHolder(ListHolder holder, int position) {
         final MainActivity.CatalogList currentList = ListDatabase.get(position);
 
-
         //Assign the values of your ArrayList to the assigned holder views
-        holder.productName.setText(productName.getProductName());
-        holder.productDesc.setText(productDesc.getProductDesc());
-        holder.price.setText(String.valueOf(price.getPrice());
-        holder.quantity.setText(String.valueOf(currentquantity.getQuantity());
-        holder.supplierName.setText(String.valueOf(currentsupplierName.getSupplierName());
-        holder.supplierPhone.setText(String.valueOf(currentsupplierPhone.getSupplierPhone());
-
+        holder.productName.setText(currentList.getProductName());
+        holder.productDesc.setText(currentList.getProductDesc());
+        holder.price.setText(String.valueOf(currentList.getPrice()));
+        holder.quantity.setText(String.valueOf(currentList.getQuantity()));
+        holder.supplierName.setText(String.valueOf(currentList.getSupplierName()));
+        holder.supplierPhone.setText(String.valueOf(currentList.getSupplierPhone()));
     }
 
     //Returns your Array size
@@ -53,12 +52,12 @@ public abstract class CatalogAdapter extends RecyclerView.Adapter<CatalogAdapter
 
     //This is a custom holder which is how your data binding occurs, this is where the ids are assigned.
     class ListHolder extends RecyclerView.ViewHolder {
-        private TextView ProductName;
-        private TextView ProductDesc;
-        private TextView Price;
-        private TextView Quantity;
-        private TextView SupplierName;
-        private TextView SupplierPhone;
+        private TextView productName;
+        private TextView productDesc;
+        private TextView price;
+        private TextView quantity;
+        private TextView supplierName;
+        private TextView supplierPhone;
 
         private ListHolder(View CatalogView) {
             super(CatalogView);

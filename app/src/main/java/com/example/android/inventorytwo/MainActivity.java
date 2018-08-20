@@ -30,13 +30,13 @@ public class MainActivity extends AppCompatActivity {
                 LinearLayoutManager(this);
 
         CatalogAdapter listAdapter = new
-                CatalogAdapter() {
+                CatalogAdapter(this, ListDatabase) {
                     @Override
                     public void onBindViewHolder(@NonNull CatalogAdapter.ListHolder holder, int position) {
 
                     }
                 };
-        listAdapter.Adapter();
+
 
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(linearLayoutManager);
